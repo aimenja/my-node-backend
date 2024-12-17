@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Calculator</title>
+  <style>
+    /* A4 Page Layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 210mm;
+      min-height: 297mm;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-container img {
+      width: 180px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .company-details {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .company-details p {
+      margin: 5px 0;
+    }
+
+    form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    select, input[type="text"], input[type="checkbox"], textarea, button {
+      margin-bottom: 15px;
+      padding: 8px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .number-of-panels {
+      display: flex;
+      align-items: center;
+    }
+
+    #panelCount {
+      margin: 0 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    button[type="button"] {
+      width: auto;
+      margin: 0 5px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    /* Print Friendly Styling */
+    @media print {
+      body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+      }
+
+      form {
+        box-shadow: none;
+        border: 1px solid #000;
+      }
+
+      button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="D:\logo.png" alt="Luminexa Logo">
+  </div>
+
+  <!-- Company Details -->
+  <div class="company-details">
+    <h1>Luminexa Smart Energy Solutions</h1>
+    <p>No. 3, Floor. 4, The Ark, I-8 Markaz, Islamabad, PK</p>
+    <p>+923100002969 | info@luminexaenergy.com</p>
+  </div>
+
+  <!-- Solar Calculator Form -->
+  <form id="solar-calculator-form">
+    <!-- Customer Name -->
+    <label>Customer Name:</label>
+    <input type="text" id="customerName" name="customerName" placeholder="Enter customer name" required>
+
+    <!-- Location -->
+    <label>Location:</label>
+    <input type="text" id="location" name="location" placeholder="Enter location" required>
+
+    <!-- Phone Number -->
+    <label>Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number" required>
+
+    <!-- System Type -->
+    <label>System Type:</label>
+    <select id="systemType" name="systemType">
+      <option value="">Select</option>
+      <option value="on-grid">On-Grid</option>
+      <option value="off-grid">Off-Grid</option>
+      <option value="hybrid">Hybrid</option>
+    </select>
+
+    <!-- Solar PV Panels -->
+    <label>Solar PV Panels:</label>
+    <select id="solarPanels" name="solarPanels">
+      <option value="">Select</option>
+      <option value="znshine-580w">Znshine</option>
+      <option value="canadian-580w">Canadian</option>
+      <option value="longi-580w">Longi</option>
+      <option value="jinko-580w">Jinko</option>
+    </select>
+
+    <!-- Panel Type -->
+    <label>Panel Type:</label>
+    <select id="panelType" name="panelType">
+      <option value="">Select</option>
+      <option value="bificial">Bificial</option>
+      <option value="monocrystalline">Monocrystalline</option>
+    </select>
+
+    <!-- System Power -->
+    <label>System Power (KW):</label>
+    <select id="systemPower" name="systemPower">
+      <option value="">Select</option>
+      <option value="3">3KW</option>
+      <option value="5">5KW</option>
+      <option value="6">6KW</option>
+      <option value="7">7KW</option>
+      <option value="8">8KW</option>
+      <option value="10">10KW</option>
+      <option value="12">12KW</option>
+      <option value="15">15KW</option>
+      <option value="20">20KW</option>
+      <option value="30">30KW</option>
+    </select>
+
+    <!-- Number of Solar Panels -->
+    <label>Number of Solar Panels:</label>
+    <div class="number-of-panels">
+      <button type="button" id="decreasePanels">-1</button>
+      <span id="panelCount">0</span>
+      <button type="button" id="increasePanels">+1</button>
+    </div>
+
+    <!-- Inverter Brand -->
+    <label>Inverter Brand:</label>
+    <select id="inverterBrand" name="inverterBrand">
+      <option value="">Select</option>
+      <option value="sungrow">Sungrow</option>
+      <option value="fronius">Fronius</option>
+      <option value="huawei">Huawei</option>
+      <option value="goodwe">Goodwe</option>
+      <option value="sofar">Sofar</option>
+    </select>
+
+    <!-- Wiring Options -->
+    <label>Wiring Options:</label>
+    <input type="checkbox" id="acWiring" name="acWiring"> AC Wiring
+    <input type="checkbox" id="dcWiring" name="dcWiring"> DC Wiring<br>
+
+    <!-- Installation -->
+    <label>Installation:</label>
+    <input type="checkbox" id="installation" name="installation"> Include Installation<br>
+
+    <!-- Transportation -->
+    <label>Transportation:</label>
+    <select id="transportation" name="transportation">
+      <option value="">Select</option>
+      <option value="under-40km">Under 40KM</option>
+      <option value="40-100km">40-100KM</option>
+      <option value="101-150km">101-150KM</option>
+      <option value="151-250km">151-250KM</option>
+    </select>
+
+    <!-- Net Metering -->
+    <label>Net Metering:</label>
+    <input type="checkbox" id="netMetering" name="netMetering"> Enable Net Metering<br>
+
+    <!-- Add-Ons / Custom Preferences -->
+    <label>Add-Ons / Custom Preferences:</label>
+    <textarea id="customPreferences" name="customPreferences" placeholder="Enter any additional requirements or preferences..."></textarea>
+
+    <!-- Submit -->
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // Constants
+    const PANEL_CAPACITY = 580; // Wattage per panel
+    let currentPanelCount = 0;
+
+    // Elements
+    const systemPowerSelect = document.getElementById('systemPower');
+    const panelCountDisplay = document.getElementById('panelCount');
+    const increaseButton = document.getElementById('increasePanels');
+    const decreaseButton = document.getElementById('decreasePanels');
+
+    // Event Listeners
+    systemPowerSelect.addEventListener('change', () => {
+      const selectedPower = parseFloat(systemPowerSelect.value); // In KW
+      if (selectedPower) {
+        currentPanelCount = Math.ceil((selectedPower * 1000) / PANEL_CAPACITY);
+        updatePanelCountDisplay();
+      }
+    });
+
+    increaseButton.addEventListener('click', () => {
+      currentPanelCount++;
+      updatePanelCountDisplay();
+    });
+
+    decreaseButton.addEventListener('click', () => {
+      if (currentPanelCount > 0) {
+        currentPanelCount--;
+        updatePanelCountDisplay();
+      }
+    });
+
+    function updatePanelCountDisplay() {
+      panelCountDisplay.textContent = currentPanelCount;
+    }
+  </script>
+<!-- Status Message -->
+  <div id="statusMessage" class="status-message"></div>
+
+  <script>
+    const form = document.getElementById('solar-calculator-form');
+    const statusMessage = document.getElementById('statusMessage');
+  
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+  
+      // Collect form data
+      const formData = {
+        customerName: document.getElementById('customerName').value,
+        location: document.getElementById('location').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        systemType: document.getElementById('systemType').value,
+        solarPanels: document.getElementById('solarPanels').value,
+        panelType: document.getElementById('panelType').value,
+        systemPower: parseInt(document.getElementById('systemPower').value) || 0,
+        panelCount: parseInt(document.getElementById('panelCount').textContent) || 0,
+        inverterBrand: document.getElementById('inverterBrand').value,
+        acWiring: document.getElementById('acWiring').checked,
+        dcWiring: document.getElementById('dcWiring').checked,
+        installation: document.getElementById('installation').checked,
+        transportation: document.getElementById('transportation').value,
+        netMetering: document.getElementById('netMetering').checked,
+        customPreferences: document.getElementById('customPreferences').value,
+      };
+  
+      // Send data to the backend
+      try {
+        const response = await fetch('http://localhost:3000/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        const result = await response.json();
+
+if (!response.ok) {
+  throw new Error(result.error || 'Something went wrong');
+}
+
+statusMessage.textContent = 'Form successfully submitted!';
+statusMessage.style.color = 'green';
+} catch (error) {
+console.error('Error:', error.message);
+statusMessage.textContent = `Error: ${error.message}`;
+statusMessage.style.color = 'red';
+}
+});
+    // Simulate form submission logic
+    function simulateFormSubmission() {
+      // Here you can add actual form submission logic (e.g., an API call)
+      // For this example, we randomly simulate success or failure
+      return Math.random() > 0.2; // 80% chance of success
+    }
+  </script>
+</body>
+</html>
